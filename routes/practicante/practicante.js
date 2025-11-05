@@ -10,7 +10,7 @@ export const createPracticanteRouter = () => {
   // **Practicantes
   practicanteRouter.get("/", practicanteController.getPracticantes);
   practicanteRouter.get("/search_by_id/:id", practicanteController.getPracticantebyId);
-  practicanteRouter.get("/nombre/:c_nombre", practicanteController.getPracticantebyName);
+  practicanteRouter.get("/nombre/:nombres", practicanteController.getPracticantebyName);
   practicanteRouter.post("/", practicanteController.postPracticantes);
   practicanteRouter.put("/:id", practicanteController.putPracticantesbyId);
   practicanteRouter.delete("/:id", practicanteController.deletePracticantesbyId);

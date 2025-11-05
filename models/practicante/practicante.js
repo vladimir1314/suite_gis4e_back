@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../../config/postgres/sequelize.js";
 
-const Practica = sequelize.define(
-  "tbl_practica",
+const Practicante = sequelize.define(
+  "practicantes",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -10,27 +10,38 @@ const Practica = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    c_nombre: {
+    nombres: {
       type: DataTypes.STRING(100),
-      allowNull: true,
+      allowNull: false,
     },
-    n_edad: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
+    apellidos: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
     },
-    b_activo: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
+    dni: {
+      type: DataTypes.CHAR(8),
+      allowNull: false,
+      unique: true,
     },
-    d_fecha: {
+    carrera: {
+      type: DataTypes.STRING(100),
+    },
+    universidad: {
+      type: DataTypes.STRING(150),
+    },
+    fecha_ingreso: {
       type: DataTypes.DATE,
-      allowNull: true,
+      defaultValue: DataTypes.NOW,
+    },
+    activo: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     },
   },
   {
     timestamps: false,
-    schema: "control_urbano",
+    schema: "public",
   }
 );
 
-export default Practica;
+export default Practicante;

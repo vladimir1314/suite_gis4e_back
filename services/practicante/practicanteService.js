@@ -1,12 +1,12 @@
 import { Op } from "sequelize";
-import Practica from "../../models/practicante/practicante.js";
+import Practicante from "../../models/practicante/practicante.js";
 import { sequelize } from "../../config/postgres/sequelize.js";
 
 export class PracticanteService {
 
   async getPracticantes() {
     try {
-      const data = await Practica.findAll();
+      const data = await Practicante.findAll();
 
       return data;
     } catch (error) {
@@ -17,7 +17,7 @@ export class PracticanteService {
 
   async getPracticantebyId( id ) {
     try {
-      const data = await Practica.findByPk(id);
+      const data = await Practicante.findByPk(id);
 
       return data;
     } catch (error) {
@@ -26,13 +26,13 @@ export class PracticanteService {
     }
   }
 
-  async getPracticantebyName( c_nombre ) {
+  async getPracticantebyName( nombres ) {
     try {
-      const data = await Practica.findOne(
+      const data = await Practicante.findOne(
         {
             where:{
-                c_nombre: {
-                    [Op.iLike]: '%' + c_nombre + '%'
+                nombres: {
+                    [Op.iLike]: `%${nombres}%`
                 }
             }
         }
@@ -57,11 +57,11 @@ export class PracticanteService {
     }
   }
 
-  async postPracticantes({c_nombre, n_edad, b_activo, d_fecha}) {
+  async postPracticantes({nombres, apellidos, dni, carrera, universidad}) {
     try {
-      const data = await Practica.create(
+      const data = await Practicante.create(
         {
-            c_nombre, n_edad, b_activo, d_fecha
+            nombres, apellidos, dni, carrera, universidad
         }
       );
 
@@ -72,11 +72,11 @@ export class PracticanteService {
     }
   }
 
-  async putPracticantesbyId(id, {c_nombre, n_edad, b_activo, d_fecha}) {
+  async putPracticantesbyId(id, {nombres, apellidos, dni, carrera, universidad}) {
     try {
-      const data = await Practica.update(
+      const data = await Practicante.update(
         {
-            c_nombre, n_edad, b_activo, d_fecha
+            nombres, apellidos, dni, carrera, universidad
         },
         {
             where: {
@@ -94,7 +94,7 @@ export class PracticanteService {
 
   async deletePracticantesbyId(id) {
     try {
-      const data = await Practica.destroy(
+      const data = await Practicante.destroy(
         {
             where: {
                 id

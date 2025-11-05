@@ -25,9 +25,9 @@ export class PracticanteController {
   }
 
   async getPracticantebyName(req, res) {
-    const { c_nombre } = req.params;
+    const { nombres } = req.params;
     try {
-      const data = await practicanteService.getPracticantebyName(c_nombre);
+      const data = await practicanteService.getPracticantebyName(nombres);
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ error: error.message });
